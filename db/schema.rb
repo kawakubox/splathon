@@ -29,6 +29,15 @@ ActiveRecord::Schema.define(version: 20171024160950) do
     t.index ["team_id"], name: "index_matches_on_team_id"
   end
 
+  create_table "qualifiers", force: :cascade do |t|
+    t.integer "event_id", null: false
+    t.integer "round"
+    t.integer "order_of_match"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["event_id"], name: "index_qualifiers_on_event_id"
+  end
+
   create_table "teams", force: :cascade do |t|
     t.integer "event_id"
     t.string "name"
