@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(version: 20171024160950) do
     t.integer "points"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["opponent_id"], name: "index_matches_on_opponent_id"
     t.index ["team_id"], name: "index_matches_on_team_id"
   end
 
