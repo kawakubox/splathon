@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171025134744) do
+ActiveRecord::Schema.define(version: 20171028065307) do
 
   create_table "events", force: :cascade do |t|
     t.date "held_on"
@@ -55,6 +55,7 @@ ActiveRecord::Schema.define(version: 20171025134744) do
     t.string "company_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "points", default: 0, null: false
     t.index ["event_id"], name: "index_teams_on_event_id"
   end
 
