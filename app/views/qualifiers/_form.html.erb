@@ -1,0 +1,27 @@
+<%= form_with(model: qualifier, local: true) do |form| %>
+  <% if qualifier.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(qualifier.errors.count, "error") %> prohibited this qualifier from being saved:</h2>
+
+      <ul>
+      <% qualifier.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :event_id %>
+    <%= form.collection_select :event_id, Event.all, :id, :name, id: :qualifier_event_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :round %>
+    <%= form.number_field :round, id: :qualifier_round %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

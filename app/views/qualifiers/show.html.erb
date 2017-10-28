@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Event:</strong>
+  <%= @qualifier.event %>
+</p>
+
+<p>
+  <strong>round:</strong>
+  <%= @qualifier.round %>
+</p>
+
+<%= link_to 'Edit', edit_qualifier_path(@qualifier) %> |
+<%= link_to 'Back', qualifiers_path %>

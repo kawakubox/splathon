@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Qualifiers</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Event</th>
+      <th>round</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @qualifiers.each do |qualifier| %>
+      <tr>
+        <td><%= qualifier.event %></td>
+        <td><%= qualifier.round %></td>
+        <td><%= link_to 'Show', qualifier %></td>
+        <td><%= link_to 'Edit', edit_qualifier_path(qualifier) %></td>
+        <td><%= link_to 'Destroy', qualifier, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Qualifier', new_qualifier_path %>
