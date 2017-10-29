@@ -2,5 +2,5 @@
 
 class QualifierMatch < ApplicationRecord
   belongs_to :qualifier
-  belongs_to :match
+  belongs_to :match, dependent: :destroy
 end
