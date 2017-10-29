@@ -7,4 +7,5 @@ RSpec.describe QualifierMatch, type: :model do
 
   it { is_expected.to respond_to :qualifier }
   it { is_expected.to respond_to :match }
+  it { is_expected.to respond_to :order_of_match }
 end
