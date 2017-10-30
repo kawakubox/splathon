@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171029002705) do
+ActiveRecord::Schema.define(version: 20171029102022) do
 
   create_table "events", force: :cascade do |t|
     t.date "held_on"
@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(version: 20171029002705) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "order_of_match", null: false
+    t.boolean "back"
     t.index ["match_id"], name: "index_qualifier_matches_on_match_id"
     t.index ["qualifier_id", "match_id"], name: "index_qualifier_matches_on_qualifier_id_and_match_id", unique: true
     t.index ["qualifier_id", "order_of_match"], name: "index_qualifier_matches_on_qualifier_id_and_order_of_match"
