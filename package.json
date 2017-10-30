@@ -2,6 +2,7 @@
   "name": "splathon",
   "private": true,
   "dependencies": {
+    "admin-lte": "^2.4.2",
     "bootstrap": "^3.3.7"
   }
 }
