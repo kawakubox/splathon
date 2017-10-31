@@ -13,5 +13,4 @@
 //= require jquery/dist/jquery
 //= require rails-ujs
 //= require admin-lte/dist/js/adminlte
-//= require turbolinks
 //= require_tree .
