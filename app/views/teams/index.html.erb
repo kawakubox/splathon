@@ -12,6 +12,7 @@
   <table class="table">
     <thead>
       <tr>
+        <th>#</th>
         <th>イベント名</th>
         <th>チーム名</th>
         <th>企業名</th>
@@ -20,8 +21,9 @@
     </thead>
 
     <tbody>
-      <% @teams.each do |team| %>
+      <% @teams.each.with_index(1) do |team, i| %>
         <tr>
+          <td><%= i %></td>
           <td><%= team.event.name %></td>
           <td><%= team.name %></td>
           <td><%= team.company_name %></td>
