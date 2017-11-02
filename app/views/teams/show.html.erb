@@ -1,19 +1,23 @@
-<p id="notice"><%= notice %></p>
+<section class="content-header">
 
-<p>
-  <strong>Event:</strong>
-  <%= @team.event %>
-</p>
+</section>
 
-<p>
-  <strong>Name:</strong>
-  <%= @team.name %>
-</p>
+<section class="content container-fulid">
+  <p>
+    <strong>イベント:</strong>
+    <%= @team.event.name %>
+  </p>
 
-<p>
-  <strong>Company name:</strong>
-  <%= @team.company_name %>
-</p>
+  <p>
+    <strong>チーム名:</strong>
+    <%= @team.name %>
+  </p>
 
-<%= link_to 'Edit', edit_team_path(@team) %> |
-<%= link_to 'Back', teams_path %>
+  <p>
+    <strong>企業名:</strong>
+    <%= @team.company_name %>
+  </p>
+
+  <%= link_to 'Edit', edit_team_path(@team) %> |
+  <%= link_to 'Back', teams_path %>
+</section>
