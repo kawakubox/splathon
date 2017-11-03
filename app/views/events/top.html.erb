@@ -1,17 +1,11 @@
 <section class="content-header">
-  <h1>
+  <h2>
     順位表
-  </h1>
-  <ol class="breadcrumb">
-    <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
-    <li class="active">Here</li>
-  </ol>
+  </h2>
 </section>
 
 <section class="content container-fluid">
   <div>
-    <p id="notice"><%= notice %></p>
-
     <div>
       <%= form_tag event_qualifiers_path(@event), method: :post do %>
         <%= submit_tag '組み合わせ抽選', class: 'btn btn-default' %>
@@ -27,7 +21,7 @@
           <th>勝ち点</th>
           <% Qualifier.where(event: @event).each do |q| %>
             <th>
-              <%= link_to "#{q.round.ordinalize} ラウンド", matches_event_qualifier_path(id: q.id, event_id: @event.id) %>
+              <%= link_to q.round.ordinalize, matches_event_qualifier_path(id: q.id, event_id: @event.id) %>
             </th>
           <% end %>
         </tr>
@@ -44,31 +38,11 @@
               <td>
                 <% match = q.matches.select { |m| m.team == team }.first %>
                 <div class="row">
-                  <%= q.opponent(team).name %> : <%= match.points %>
+                  <label class="label label-default"><%= team.result(q) %></label>
                 </div>
-
-                <% if false %>
                 <div class="row">
-
-                  <%= form_tag win_match_path(match), method: :post, class: 'button' do %>
-                    <%= button_tag type: :submit, class: 'btn-sm btn-success' do %>
-                      <%= fa_icon 'smile-o' %>
-                    <% end %>
-                  <% end %>
-
-                  <%= form_tag draw_match_path(match), method: :post, class: 'button' do %>
-                    <%= button_tag type: :submit, class: 'btn-sm btn-secondary' do %>
-                      <%= fa_icon 'meh-o' %>
-                    <% end %>
-                  <% end %>
-
-                  <%= form_tag lose_match_path(match), method: :post, class: 'button' do %>
-                    <%= button_tag type: :submit, class: 'btn-sm btn-danger' do %>
-                      <%= fa_icon 'frown-o' %>
-                    <% end %>
-                  <% end %>
+                  vs <%= truncate(match.opponent.name, length: 8) %>
                 </div>
-                <% end %>
               </td>
             <% end %>
           </tr>
