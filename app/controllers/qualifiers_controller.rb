@@ -26,17 +26,15 @@ class QualifiersController < ApplicationController
   # POST /qualifiers
   # POST /qualifiers.json
   def create
-    @qualifier = Qualifier.new(qualifier_params)
+    @event = Event.find(params[:event_id])
 
-    respond_to do |format|
-      if @qualifier.save
-        format.html { redirect_to @qualifier, notice: 'Qualifier was successfully created.' }
-        format.json { render :show, status: :created, location: @qualifier }
-      else
-        format.html { render :new }
-        format.json { render json: @qualifier.errors, status: :unprocessable_entity }
-      end
+    ActiveRecord::Base.transaction do
+      @qualifier = Qualifier.new(event: @event)
+      @qualifier.round = Qualifier.next_round(@event.id)
+      Drawer.new.swiss_draw(@qualifier)
+      @qualifier.save!
     end
+    redirect_to matches_event_qualifier_path(id: @qualifier.id, event_id: @event.id)
   end
 
   # PATCH/PUT /qualifiers/1
