@@ -5,7 +5,7 @@
 </section>
 
 <section class="content container-fluid">
-  <% if @event.qualifiers.last.done? %>
+  <% if @event.qualifiers.blank? || @event.qualifiers.last.done? %>
     <div>
       <%= form_tag event_qualifiers_path(@event), method: :post do %>
         <%= submit_tag '組み合わせ抽選', class: 'btn btn-default' %>
