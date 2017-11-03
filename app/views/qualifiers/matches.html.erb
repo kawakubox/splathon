@@ -1,0 +1,69 @@
+<section class="content-header">
+  <h2>
+    <%= "予選ラウンド#{@qualifier.round}回戦" %>
+  </h2>
+</section>
+
+<section class="content conteiner-fluid">
+  <div class="row">
+    <div class="col-md-12">
+      <table class="table">
+        <tr>
+          <th>#</th>
+          <th>対戦カード</th>
+        </tr>
+        <% @qualifier_matches.each do |qm| %>
+          <tr>
+            <td>
+              <%= qm.order_of_match %>
+            </td>
+            <td>
+              <div class="col-md-5">
+                <div class="row">
+                  <div class="col-md-3">
+                    <h4>
+                      <span class="label label-default"><%= qm.match.team.result(@qualifier) %></span>
+                    </h4>
+                  </div>
+                  <div class="col-md-9">
+                    <h4>
+                      <span><%= qm.match.team.name %></span>
+                    </h4>
+                  </div>
+                </div>
+
+                <div>
+                  <%= render partial: 'result_buttons', locals: { match: qm.match } %>
+                </div>
+              </div>
+
+              <div class="col-md-2">
+                VS
+              </div>
+
+              <div class="col-md-5">
+                <div class="row">
+                  <div class="col-md-3">
+                    <h4>
+                      <span class="label label-default"><%= qm.match.opponent.result(@qualifier) %></span>
+                    </h4>
+                  </div>
+                  <div class="col-md-9">
+                    <h4>
+                      <span><%= qm.match.opponent.name %></span>
+                    </h4>
+                  </div>
+                </div>
+
+                <div>
+                  <%= render partial: 'result_buttons', locals: { match: qm.back_combination.match } %>
+                </div>
+              </div>
+            </td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+  </div>
+
+</section>

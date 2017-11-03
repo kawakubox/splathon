@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
   resources :events do
+    resources :qualifiers do
+      member do
+        get :matches
+      end
+    end
+
     member do
       get :top
     end

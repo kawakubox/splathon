@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class QualifiersController < ApplicationController
-  before_action :set_qualifier, only: [:show, :edit, :update, :destroy]
+  before_action :set_qualifier, only: [:show, :edit, :update, :destroy, :matches]
 
   # GET /qualifiers
   # GET /qualifiers.json
@@ -61,6 +61,10 @@ class QualifiersController < ApplicationController
       format.html { redirect_to qualifiers_url, notice: 'Qualifier was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def matches
+    @qualifier_matches = QualifierMatch.where(qualifier_id: @qualifier, back: nil).order(:order_of_match)
   end
 
   private

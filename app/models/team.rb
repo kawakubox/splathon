@@ -8,4 +8,13 @@ class Team < ApplicationRecord
   def rank
     event.teams.where('points > ?', points).count + 1
   end
+
+  def result(qualifier)
+    case qualifier.matches.where(team: self).first.points
+    when 0 then 'Lose'
+    when 1 then 'Draw'
+    when 3 then 'Win'
+    else ''
+    end
+  end
 end
