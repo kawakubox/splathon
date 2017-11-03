@@ -8,7 +8,38 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
-    <%= yield %>
+  <body class="skin-green">
+    <div class="wrapper">
+      <header class="main-header">
+        <%= link_to events_path, class: "logo" do %>
+          <span class="logo-mini"><b>Splathon</b></span>
+          <span class="logo-lg"><b>Splathon</b></span>
+        <% end %>
+
+        <nav class="navbar navbar-static-top" role="navigation">
+        </nav>
+      </header>
+
+      <aside class="main-sidebar">
+        <section class="sidebar">
+          <ul class="sidebar-menu" data-widget="tree">
+            <li>
+              <%= link_to events_path do %>
+                <%= fa_icon 'calendar-o'%></i> <span>イベント</span>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to teams_path do %>
+                <%= fa_icon 'users'%></i> <span>チーム</span>
+              <% end %>
+            </li>
+          </ul>
+        </section>
+      </aside>
+
+      <div class="content-wrapper">
+        <%= yield %>
+      </div>
+    </div>
   </body>
 </html>
