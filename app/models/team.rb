@@ -5,6 +5,10 @@ class Team < ApplicationRecord
 
   validates :name, presence: true
 
+  def match_count
+    Match.where(team: self).where.not(points: nil).count
+  end
+
   def rank
     event.teams.where('points > ?', points).count + 1
   end
