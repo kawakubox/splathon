@@ -64,7 +64,7 @@ class EventsController < ApplicationController
   end
 
   def top
-    @teams = Team.where(event: @event)
+    @teams = Team.where(event: @event).order(points: :desc)
   end
 
   private
