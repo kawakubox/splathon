@@ -2,6 +2,9 @@
   <h2>
     <%= "予選ラウンド#{@qualifier.round}回戦" %>
   </h2>
+  <div>
+    <%= link_to 'イベントTop', top_event_path(@qualifier.event) %>
+  </div>
 </section>
 
 <section class="content conteiner-fluid">
