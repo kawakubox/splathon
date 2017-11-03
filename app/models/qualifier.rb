@@ -8,4 +8,12 @@ class Qualifier < ApplicationRecord
   def self.next_round(event_id)
     Qualifier.where(event_id: event_id).maximum(:round).to_i + 1
   end
+
+  def preinitiation?
+    matches.all? { |m| m.points.blank? }
+  end
+
+  def done?
+    matches.all? { |m| m.points.present? }
+  end
 end

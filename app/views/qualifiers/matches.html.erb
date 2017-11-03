@@ -5,6 +5,19 @@
 </section>
 
 <section class="content conteiner-fluid">
+
+  <% if @qualifier.preinitiation? %>
+    <div class="row">
+      <div class="col-md-3">
+        <%= form_tag redraw_qualifier_path(@qualifier), method: :post do %>
+          <%= button_tag class: 'btn btn-default' do %>
+            <%= fa_icon 'repeat' %>再抽選
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+
   <div class="row">
     <div class="col-md-12">
       <table class="table">
