@@ -31,7 +31,7 @@ class QualifiersController < ApplicationController
     ActiveRecord::Base.transaction do
       @qualifier = Qualifier.new(event: @event)
       @qualifier.round = Qualifier.next_round(@event.id)
-      Drawer.new.swiss_draw(@qualifier)
+      Drawer.swiss_draw(@qualifier)
       @qualifier.save!
     end
     redirect_to matches_event_qualifier_path(id: @qualifier.id, event_id: @event.id)
