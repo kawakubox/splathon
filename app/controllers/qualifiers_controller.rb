@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class QualifiersController < ApplicationController
-  before_action :set_qualifier, only: [:show, :edit, :update, :destroy, :matches]
+  before_action :set_qualifier, only: [:show, :edit, :update, :destroy, :matches, :redraw]
 
   # GET /qualifiers
   # GET /qualifiers.json
@@ -63,6 +63,11 @@ class QualifiersController < ApplicationController
 
   def matches
     @qualifier_matches = QualifierMatch.where(qualifier_id: @qualifier, back: nil).order(:order_of_match)
+  end
+
+  def redraw
+    Drawer.redraw(@qualifier)
+    redirect_back(fallback_location: top_event_path(@qualifier.event))
   end
 
   private
