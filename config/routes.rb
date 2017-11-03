@@ -19,7 +19,12 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :qualifiers do
+    member do
+      post :redraw
+    end
+  end
+
   resources :teams
-  resources :qualifiers
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
