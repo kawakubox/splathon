@@ -5,13 +5,15 @@
 </section>
 
 <section class="content container-fluid">
-  <div>
+  <% if @event.qualifiers.last.done? %>
     <div>
       <%= form_tag event_qualifiers_path(@event), method: :post do %>
         <%= submit_tag '組み合わせ抽選', class: 'btn btn-default' %>
       <% end %>
     </div>
+  <% end %>
 
+  <div>
     <table class="table">
       <thead>
         <tr>
