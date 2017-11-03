@@ -13,6 +13,10 @@ class Team < ApplicationRecord
     event.teams.where('points > ?', points).count + 1
   end
 
+  def aggregate_points
+    update!(points: Match.where(team: self).sum(:points))
+  end
+
   def result(qualifier)
     case qualifier.matches.where(team: self).first.points
     when 0 then 'Lose'
