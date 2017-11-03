@@ -1,14 +1,18 @@
-<p id="notice"><%= notice %></p>
+<section class="content-header">
 
-<p>
-  <strong>Held on:</strong>
-  <%= @event.held_on %>
-</p>
+</section>
 
-<p>
-  <strong>Name:</strong>
-  <%= @event.name %>
-</p>
-
-<%= link_to 'Edit', edit_event_path(@event) %> |
-<%= link_to 'Back', events_path %>
+<section class="content container-fulid">
+  <p>
+    <strong>開催日:</strong>
+    <%= @event.held_on %>
+  </p>
+  
+  <p>
+    <strong>イベント名:</strong>
+    <%= @event.name %>
+  </p>
+  
+  <%= link_to 'Edit', edit_event_path(@event) %> |
+  <%= link_to 'Back', events_path %>
+</section>
