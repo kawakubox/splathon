@@ -6,7 +6,7 @@ class QualifiersController < ApplicationController
   # GET /qualifiers
   # GET /qualifiers.json
   def index
-    @qualifiers = Qualifier.all
+    @qualifiers = QualifierMatch.where(qualifier: @qualifier, back: nil).order(:order_of_match)
   end
 
   # GET /qualifiers/1
