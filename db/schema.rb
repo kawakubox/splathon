@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171029102022) do
+ActiveRecord::Schema.define(version: 20171103210105) do
 
   create_table "events", force: :cascade do |t|
     t.date "held_on"
@@ -26,6 +26,9 @@ ActiveRecord::Schema.define(version: 20171029102022) do
     t.integer "points"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "qualifier_id"
+    t.integer "team_points"
+    t.integer "opponent_points"
     t.index ["opponent_id"], name: "index_matches_on_opponent_id"
     t.index ["team_id"], name: "index_matches_on_team_id"
   end

@@ -2,6 +2,7 @@
 
 FactoryBot.define do
   factory :match do
+    qualifier
     team
     opponent { FactoryBot.create(:team) }
     points { [0, 1, 3].sample }
