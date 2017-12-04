@@ -1,12 +1,20 @@
 # frozen_string_literal: true
 
 class MatchesController < ApplicationController
-  before_action :set_match, only: [:win, :draw, :lose]
+  before_action :set_match, only: %i[edit update win draw lose]
 
   # GET /matches
   # GET /matches.json
   def index
     @matches = Match.all
+  end
+
+  def edit
+  end
+
+  def update
+    @match.update!(match_params)
+    redirect_to top_event_path(@match.qualifier.event)
   end
 
   # POST /matches
@@ -51,5 +59,9 @@ class MatchesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_match
       @match = Match.find(params[:id])
+    end
+
+    def match_params
+      params.require(:match).permit(:team_id, :opponent_id)
     end
 end

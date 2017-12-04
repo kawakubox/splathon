@@ -11,7 +11,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :matches, only: :index do
+  resources :matches, only: %i[index edit update]do
     member do
       post :win
       post :draw
