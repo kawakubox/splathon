@@ -6,7 +6,7 @@ class Team < ApplicationRecord
   validates :name, presence: true
 
   def match_count
-    Match.where(team: self).where.not(points: nil).count
+    Match.where(team: self).where.not(team_points: nil).count + Match.where(opponent: self).where.not(opponent_points: nil).count
   end
 
   def rank

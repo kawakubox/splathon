@@ -15,4 +15,15 @@ RSpec.describe Team, type: :model do
       end
     end
   end
+
+  describe '#match_count' do
+    let(:team) { FactoryBot.create(:team) }
+    let(:opponent) { FactoryBot.create(:team) }
+
+    it 'ホーム、アウェイの合算になること' do
+      FactoryBot.create(:match, team: team,     opponent: opponent, team_points: 3, opponent_points: 0)
+      FactoryBot.create(:match, team: opponent, opponent: team,     team_points: 0, opponent_points: 3)
+      expect(team.match_count).to eq 2
+    end
+  end
 end
