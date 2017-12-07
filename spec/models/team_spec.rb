@@ -26,4 +26,19 @@ RSpec.describe Team, type: :model do
       expect(team.match_count).to eq 2
     end
   end
+
+  describe '#aggregate_points' do
+    let(:team) { FactoryBot.create(:team) }
+    let(:opponent) { FactoryBot.create(:team) }
+
+    it 'ホーム、アウェイの合算になること' do
+      expect do
+        FactoryBot.create(:match, team: team,     opponent: opponent, team_points: 3, opponent_points: 0)
+      end.to change { team.reload.points }.to(3)
+
+      expect do
+        FactoryBot.create(:match, team: opponent, opponent: team,     team_points: 0, opponent_points: 3)
+      end.to change { team.reload.points }.to(6)
+    end
+  end
 end

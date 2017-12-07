@@ -6,5 +6,5 @@ class Match < ApplicationRecord
   belongs_to :qualifier
   has_one    :qualifier_match
 
-  after_commit { team.aggregate_points }
+  after_commit { team.aggregate_points; opponent.aggregate_points }
 end
