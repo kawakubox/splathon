@@ -14,7 +14,9 @@ class Team < ApplicationRecord
   end
 
   def aggregate_points
-    update!(points: Match.where(team: self).sum(:points))
+    p1 = Match.where(team: self).sum(:team_points)
+    p2 = Match.where(opponent: self).sum(:opponent_points)
+    update!(points: p1 + p2)
   end
 
   def result(qualifier)
