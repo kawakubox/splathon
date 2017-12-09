@@ -35,24 +35,24 @@ class MatchesController < ApplicationController
     @match.update!(points: 3)
     QualifierMatch.find_by(match: @match).back_combination.match.update!(points: 0)
     redirect_to matches_event_qualifier_path(
-      id: @match.qualifier_match.qualifier.id, event_id: @match.id,
-      event_id: @match.qualifier_match.qualifier.event.id)
+      id: @match.qualifier,
+      event_id: @match.qualifier.event.id)
   end
 
   def draw
     @match.update!(points: 1)
     QualifierMatch.find_by(match: @match).back_combination.match.update!(points: 1)
     redirect_to matches_event_qualifier_path(
-      id: @match.qualifier_match.qualifier.id, event_id: @match.id,
-      event_id: @match.qualifier_match.qualifier.event.id)
+      id: @match.qualifier,
+      event_id: @match.qualifier.event.id)
   end
 
   def lose
     @match.update!(points: 0)
     QualifierMatch.find_by(match: @match).back_combination.match.update!(points: 3)
     redirect_to matches_event_qualifier_path(
-      id: @match.qualifier_match.qualifier.id, event_id: @match.id,
-      event_id: @match.qualifier_match.qualifier.event.id)
+      id: @match.qualifier.id,
+      event_id: @match.qualifier.event.id)
   end
 
   private
