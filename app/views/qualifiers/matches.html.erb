@@ -28,28 +28,28 @@
           <th>#</th>
           <th>対戦カード</th>
         </tr>
-        <% @qualifier_matches.each do |qm| %>
+        <% @qualifier.matches.each.with_index(1) do |match, i| %>
           <tr>
             <td>
-              <%= qm.order_of_match %>
+              <%= i %>
             </td>
             <td>
               <div class="col-md-5">
                 <div class="row">
                   <div class="col-md-3">
                     <h4>
-                      <span class="label label-default"><%= qm.match.team.result(@qualifier) %></span>
+                      <span class="label label-default"><%= match.team_points %></span>
                     </h4>
                   </div>
                   <div class="col-md-9">
                     <h4>
-                      <span><%= qm.match.team.name %></span>
+                      <span><%= match.team.name %></span>
                     </h4>
                   </div>
                 </div>
 
                 <div>
-                  <%= render partial: 'result_buttons', locals: { match: qm.match } %>
+                  <%= render partial: 'result_buttons', locals: { match: match, reciever: 'team' } %>
                 </div>
               </div>
 
@@ -61,18 +61,18 @@
                 <div class="row">
                   <div class="col-md-3">
                     <h4>
-                      <span class="label label-default"><%= qm.match.opponent.result(@qualifier) %></span>
+                      <span class="label label-default"><%= match.opponent_points %></span>
                     </h4>
                   </div>
                   <div class="col-md-9">
                     <h4>
-                      <span><%= qm.match.opponent.name %></span>
+                      <span><%= match.opponent.name %></span>
                     </h4>
                   </div>
                 </div>
 
                 <div>
-                  <%= render partial: 'result_buttons', locals: { match: qm.back_combination.match } %>
+                  <%= render partial: 'result_buttons', locals: { match: match, reciever: 'opponent' } %>
                 </div>
               </div>
             </td>
