@@ -36,14 +36,14 @@
             <td><%= team.name %></td>
             <td><%= team.match_count %></td>
             <td><%= team.points %></td>
-            <% Qualifier.where(event: @event).each do |q| %>
+            <% team.matches.each do |match| %>
               <td>
-                <% match = q.matches.select { |m| m.team == team }.first %>
+                <% opponent = match.team == team ? match.opponent : match.team %>
                 <div class="row">
                   <label class="label label-default"><%= match.points(team) %></label>
                 </div>
                 <div class="row">
-                  vs <%= truncate(match.opponent.name, length: 8) %>
+                  vs <%= link_to truncate(opponent.name, length: 8), edit_match_path(match) %>
                 </div>
               </td>
             <% end %>

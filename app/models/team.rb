@@ -2,8 +2,14 @@
 
 class Team < ApplicationRecord
   belongs_to :event
+  has_many :home_games, class_name: 'Match', dependent: :destroy
+  has_many :away_games, class_name: 'Match', foreign_key: :opponent_id, dependent: :destroy
 
   validates :name, presence: true
+
+  def matches
+    (home_games + away_games).sort_by(&:id)
+  end
 
   def match_count
     Match.where(team: self).where.not(team_points: nil).count + Match.where(opponent: self).where.not(opponent_points: nil).count
