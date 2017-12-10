@@ -2,7 +2,6 @@
 
 class Qualifier < ApplicationRecord
   belongs_to :event
-  has_many   :qualifier_matches, dependent: :destroy
   has_many   :matches, dependent: :destroy
 
   def self.next_round(event_id)

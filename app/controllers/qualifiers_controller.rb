@@ -6,7 +6,6 @@ class QualifiersController < ApplicationController
   # GET /qualifiers
   # GET /qualifiers.json
   def index
-    @qualifiers = QualifierMatch.where(qualifier: @qualifier, back: nil).order(:order_of_match)
   end
 
   # GET /qualifiers/1
@@ -59,10 +58,6 @@ class QualifiersController < ApplicationController
       format.html { redirect_to qualifiers_url, notice: 'Qualifier was successfully destroyed.' }
       format.json { head :no_content }
     end
-  end
-
-  def matches
-    @qualifier_matches = QualifierMatch.where(qualifier_id: @qualifier, back: nil).order(:order_of_match)
   end
 
   def redraw
