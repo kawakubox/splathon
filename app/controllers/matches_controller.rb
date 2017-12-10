@@ -32,24 +32,24 @@ class MatchesController < ApplicationController
   end
 
   def win
-    @match.update!(points: 3)
-    QualifierMatch.find_by(match: @match).back_combination.match.update!(points: 0)
+    @match.update!(team_points: 3, opponent_points: 0) if params[:reciever] == 'team'
+    @match.update!(team_points: 0, opponent_points: 3) if params[:reciever] == 'opponent'
     redirect_to matches_event_qualifier_path(
       id: @match.qualifier,
       event_id: @match.qualifier.event.id)
   end
 
   def draw
-    @match.update!(points: 1)
-    QualifierMatch.find_by(match: @match).back_combination.match.update!(points: 1)
+    @match.update!(team_points: 1, opponent_points: 1) if params[:reciever] == 'team'
+    @match.update!(team_points: 1, opponent_points: 1) if params[:reciever] == 'opponent'
     redirect_to matches_event_qualifier_path(
       id: @match.qualifier,
       event_id: @match.qualifier.event.id)
   end
 
   def lose
-    @match.update!(points: 0)
-    QualifierMatch.find_by(match: @match).back_combination.match.update!(points: 3)
+    @match.update!(team_points: 0, opponent_points: 3) if params[:reciever] == 'team'
+    @match.update!(team_points: 3, opponent_points: 0) if params[:reciever] == 'opponent'
     redirect_to matches_event_qualifier_path(
       id: @match.qualifier.id,
       event_id: @match.qualifier.event.id)
