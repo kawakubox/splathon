@@ -1,16 +1,19 @@
 <%= form_tag win_match_path(match), method: :post, class: 'button' do %>
+  <%= hidden_field_tag :reciever, reciever %>
   <%= button_tag type: :submit, class: 'btn-sm btn-success' do %>
     <%= fa_icon 'smile-o' %>
   <% end %>
 <% end %>
 
 <%= form_tag draw_match_path(match), method: :post, class: 'button' do %>
+  <%= hidden_field_tag :reciever, reciever %>
   <%= button_tag type: :submit, class: 'btn-sm btn-secondary' do %>
     <%= fa_icon 'meh-o' %>
   <% end %>
 <% end %>
 
 <%= form_tag lose_match_path(match), method: :post, class: 'button' do %>
+  <%= hidden_field_tag :reciever, reciever %>
   <%= button_tag type: :submit, class: 'btn-sm btn-danger' do %>
     <%= fa_icon 'frown-o' %>
   <% end %>
