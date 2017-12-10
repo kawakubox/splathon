@@ -5,6 +5,7 @@ FactoryBot.define do
     qualifier
     team
     opponent { FactoryBot.create(:team) }
-    points { [0, 1, 3].sample }
+    team_points { [0, 1, 3].sample }
+    opponent_points { [0, 1, 3].sample }
   end
 end

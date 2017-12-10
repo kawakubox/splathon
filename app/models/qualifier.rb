@@ -10,10 +10,10 @@ class Qualifier < ApplicationRecord
   end
 
   def preinitiation?
-    matches.all? { |m| m.points.blank? }
+    matches.all? { |m| m.team_points.blank? && m.opponent_points.blank? }
   end
 
   def done?
-    matches.all? { |m| m.points.present? }
+    matches.all? { |m| m.team_points.present? && m.opponent_points.present? }
   end
 end
