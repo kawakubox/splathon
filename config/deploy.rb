@@ -4,6 +4,10 @@ lock "~> 3.10.1"
 set :application, 'splathon'
 set :repo_url, 'https://github.com/kawakubox/splathon.git'
 
+set :rbenv_type, :user
+set :rbenv_ruby, '2.4.2'
+set :rbenv_custom_path, '/home/kawakubox/.anyenv/envs/rbenv'
+
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 
