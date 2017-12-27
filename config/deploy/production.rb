@@ -1,4 +1,4 @@
-server 'splathon', roles: %w[app]
+server 'splathon', roles: %w[app web]
 
 # Configuration
 # =============
