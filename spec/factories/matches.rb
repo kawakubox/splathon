@@ -7,5 +7,6 @@ FactoryBot.define do
     opponent { FactoryBot.create(:team) }
     team_points { [0, 1, 3].sample }
     opponent_points { [0, 1, 3].sample }
+    room
   end
 end
