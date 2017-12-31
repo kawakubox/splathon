@@ -26,12 +26,16 @@
       <table class="table">
         <tr>
           <th>#</th>
+          <th>ルーム</th>
           <th>対戦カード</th>
         </tr>
         <% @qualifier.matches.each.with_index(1) do |match, i| %>
           <tr>
             <td>
               <%= i %>
+            </td>
+            <td>
+              <%= match.room.name %>
             </td>
             <td>
               <div class="col-md-5">
