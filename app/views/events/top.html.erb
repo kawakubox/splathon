@@ -1,7 +1,4 @@
 <section class="content-header">
-  <h2>
-    順位表
-  </h2>
 </section>
 
 <section class="content container-fluid">
@@ -13,43 +10,59 @@
     </div>
   <% end %>
 
-  <div>
-    <table class="table">
-      <thead>
-        <tr>
-          <th>順位</th>
-          <th>チーム名</th>
-          <th>試合数</th>
-          <th>勝ち点</th>
-          <% Qualifier.where(event: @event).each do |q| %>
-            <th>
-              <%= link_to q.round.ordinalize, matches_event_qualifier_path(id: q.id, event_id: @event.id) %>
-            </th>
-          <% end %>
-        </tr>
-      </thead>
+  <ul class='nav nav-tabs'>
+    <li class='nav-item active'>
+      <a class='nav-link' data-toggle='tab' href='#ranking-tab'>順位表</a>
+    </li>
 
-      <tbody>
-        <% @teams.each do |team| %>
+    <li class='nav-item'>
+      <a class='nav-link' data-toggle='tab' href='#result-tab'>結果</a>
+    </li>
+  </ul>
+
+  <div class='tab-content'>
+    <div id='ranking-tab' class='tab-pane active'>
+      <div class='col-md-6'>
+        <%= render partial: 'ranking', locals: { teams: @teams[0...(@teams.size / 2).to_i] } %>
+      </div>
+
+      <div class='col-md-6'>
+        <%= render partial: 'ranking', locals: { teams: @teams[(@teams.size / 2).to_i..@teams.size] } %>
+      </div>
+    </div>
+
+    <div id='result-tab' class='tab-pane'>
+      <table class="table">
+        <thead>
           <tr>
-            <td><%= team.rank %></td>
-            <td><%= team.name %></td>
-            <td><%= team.match_count %></td>
-            <td><%= team.points %></td>
-            <% team.matches.each do |match| %>
-              <td>
-                <% opponent = match.team == team ? match.opponent : match.team %>
-                <div class="row">
-                  <label class="label label-default"><%= match.points(team) %></label>
-                </div>
-                <div class="row">
-                  vs <%= link_to truncate(opponent.name, length: 8), edit_match_path(match) %>
-                </div>
-              </td>
+            <th>チーム名</th>
+            <% Qualifier.where(event: @event).each do |q| %>
+              <th>
+                <%= link_to q.round.ordinalize, matches_event_qualifier_path(id: q.id, event_id: @event.id) %>
+              </th>
             <% end %>
           </tr>
-        <% end %>
-      </tbody>
-    </table>
+        </thead>
+
+        <tbody>
+          <% @teams.each do |team| %>
+            <tr>
+              <td><%= team.name %></td>
+              <% team.matches.each do |match| %>
+                <td>
+                  <% opponent = match.team == team ? match.opponent : match.team %>
+                  <div class="row">
+                    <label class="label label-default"><%= match.points(team) %></label>
+                  </div>
+                  <div class="row">
+                    vs <%= link_to truncate(opponent.name, length: 8), edit_match_path(match) %>
+                  </div>
+                </td>
+              <% end %>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
   </div>
 </section>
