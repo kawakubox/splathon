@@ -1,9 +1,8 @@
 <section class="content-header">
-  <h2>
-    <%= "予選ラウンド#{@qualifier.round}回戦" %>
-  </h2>
   <div>
     <%= link_to 'イベントTop', top_event_path(@qualifier.event) %>
+    >
+    <%= "スイスドロー#{@qualifier.round}回戦" %>
   </div>
 </section>
 
@@ -27,58 +26,63 @@
         <tr>
           <th>#</th>
           <th>ルーム</th>
-          <th>対戦カード</th>
+          <th>HOME</th>
+          <th></th>
+          <th>AWAY</th>
+          <th></th>
         </tr>
         <% @qualifier.matches.each.with_index(1) do |match, i| %>
           <tr>
-            <td>
+            <td style='width: 20px'>
               <%= i %>
             </td>
-            <td>
+            <td style='width: 100px'>
               <%= match.room.name %>
             </td>
+            <td style='width: 270px'>
+              <% if match.team_points %>
+                <span class='badge badge-secondary'>
+                  <%= 'Win' if match.team_points == 3 %>
+                  <%= 'Draw' if match.team_points == 1 %>
+                  <%= 'Lose' if match.team_points == 0 %>
+                </span>
+              <% end %>
+              <%= match.team.name %>
+            </td>
+            <td style='width: 50px'>
+              VS
+            </td>
+            <td style='width: 270px'>
+              <% if match.opponent_points %>
+                <span class='badge badge-secondary'>
+                  <%= 'Win' if match.opponent_points == 3 %>
+                  <%= 'Draw' if match.opponent_points == 1 %>
+                  <%= 'Lose' if match.opponent_points == 0 %>
+                </span>
+              <% end %>
+              <%= match.opponent.name %>
+            </td>
             <td>
-              <div class="col-md-5">
-                <div class="row">
-                  <div class="col-md-3">
-                    <h4>
-                      <span class="label label-default"><%= match.team_points %></span>
-                    </h4>
-                  </div>
-                  <div class="col-md-9">
-                    <h4>
-                      <span><%= match.team.name %></span>
-                    </h4>
-                  </div>
-                </div>
+              <%= form_tag win_match_path(match), method: :post, class: 'button' do %>
+                <%= hidden_field_tag :reciever, 'team' %>
+                <%= button_tag type: :submit, class: 'btn btn-sm btn-success' do %>
+                  <span style="font-size: x-small">Home勝ち</span>
+                <% end %>
+              <% end %>
 
-                <div>
-                  <%= render partial: 'result_buttons', locals: { match: match, reciever: 'team' } %>
-                </div>
-              </div>
+              <%= form_tag draw_match_path(match), method: :post, class: 'button' do %>
+                <%= hidden_field_tag :reciever, 'team' %>
+                <%= button_tag type: :submit, class: 'btn btn-sm btn-secondary' do %>
+                  <span style="font-size: x-small">引き分け</span>
+                <% end %>
+              <% end %>
 
-              <div class="col-md-2">
-                VS
-              </div>
-
-              <div class="col-md-5">
-                <div class="row">
-                  <div class="col-md-3">
-                    <h4>
-                      <span class="label label-default"><%= match.opponent_points %></span>
-                    </h4>
-                  </div>
-                  <div class="col-md-9">
-                    <h4>
-                      <span><%= match.opponent.name %></span>
-                    </h4>
-                  </div>
-                </div>
-
-                <div>
-                  <%= render partial: 'result_buttons', locals: { match: match, reciever: 'opponent' } %>
-                </div>
-              </div>
+              <%= form_tag lose_match_path(match), method: :post, class: 'button' do %>
+                <%= hidden_field_tag :reciever, 'team' %>
+                <%= button_tag type: :submit, class: 'btn btn-sm btn-danger' do %>
+                  <span style="font-size: x-small">AWAY勝ち</span>
+                <% end %>
+              <% end %>
             </td>
           </tr>
         <% end %>
