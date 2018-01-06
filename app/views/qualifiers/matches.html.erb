@@ -41,7 +41,7 @@
             </td>
             <td>
               <% if match.team_points %>
-                <span class='badge badge-secondary'>
+                <span class="badge badge-secondary <%= 'badge-win' if match.team_points == 3 %> <%= 'badge-lose' if match.team_points == 0 %>">
                   <%= 'Win' if match.team_points == 3 %>
                   <%= 'Draw' if match.team_points == 1 %>
                   <%= 'Lose' if match.team_points == 0 %>
@@ -54,7 +54,7 @@
             </td>
             <td>
               <% if match.opponent_points %>
-                <span class='badge badge-secondary'>
+                <span class="badge badge-secondary <%= 'badge-win' if match.team_points == 3 %> <%= 'badge-lose' if match.team_points == 0 %>">
                   <%= 'Win' if match.opponent_points == 3 %>
                   <%= 'Draw' if match.opponent_points == 1 %>
                   <%= 'Lose' if match.opponent_points == 0 %>
