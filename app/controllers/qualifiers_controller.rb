@@ -33,6 +33,7 @@ class QualifiersController < ApplicationController
       Drawer.swiss_draw(@qualifier)
       @qualifier.save!
     end
+    RoomAllocator.new(@qualifier.reload).allocate
     redirect_to matches_event_qualifier_path(id: @qualifier.id, event_id: @event.id)
   end
 
@@ -62,6 +63,7 @@ class QualifiersController < ApplicationController
 
   def redraw
     Drawer.redraw(@qualifier)
+    RoomAllocator.new(@qualifier).allocate
     redirect_back(fallback_location: top_event_path(@qualifier.event))
   end
 

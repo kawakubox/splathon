@@ -55,7 +55,8 @@
                     <label class="label label-default"><%= match.points(team) %></label>
                   </div>
                   <div class="row">
-                    vs <%= link_to truncate(opponent.name, length: 8), edit_match_path(match) %>
+                    <%= link_to truncate(opponent.name, length: 8), edit_match_path(match) %>
+                    <%= "(#{match.room&.name})" %>
                   </div>
                 </td>
               <% end %>
