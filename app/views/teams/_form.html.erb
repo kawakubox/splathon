@@ -26,6 +26,11 @@
     <%= form.text_field :company_name, id: :team_company_name %>
   </div>
 
+  <div class="field">
+    <%= form.label :points %>
+    <%= form.number_field :points, id: :team_points, step: 1 %>
+  </div>
+
   <div class="actions">
     <%= form.submit %>
   </div>
