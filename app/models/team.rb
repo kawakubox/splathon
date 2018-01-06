@@ -33,4 +33,8 @@ class Team < ApplicationRecord
     else ''
     end
   end
+
+  def room_priority
+    self.matches.sum { |m| m.room&.priority.to_i }
+  end
 end

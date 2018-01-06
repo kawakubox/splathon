@@ -11,4 +11,8 @@ class Match < ApplicationRecord
   def points(team)
     self.team == team ? team_points : opponent_points
   end
+
+  def room_priority
+    team.room_priority + opponent.room_priority
+  end
 end
