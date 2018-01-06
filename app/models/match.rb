@@ -15,4 +15,12 @@ class Match < ApplicationRecord
   def room_priority
     team.room_priority + opponent.room_priority
   end
+
+  def result(team)
+    case points(team)
+      when 3 then 'Win'
+      when 1 then 'Draw'
+      when 0 then 'Lose'
+    end
+  end
 end

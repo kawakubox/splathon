@@ -16,7 +16,7 @@
     </li>
 
     <li class='nav-item'>
-      <a class='nav-link' data-toggle='tab' href='#result-tab'>結果</a>
+      <a class='nav-link' data-toggle='tab' href='#result-tab'>対戦履歴</a>
     </li>
   </ul>
 
@@ -38,7 +38,7 @@
             <th>チーム名</th>
             <% Qualifier.where(event: @event).each do |q| %>
               <th>
-                <%= link_to q.round.ordinalize, matches_event_qualifier_path(id: q.id, event_id: @event.id) %>
+                <%= link_to "#{q.round}回戦", matches_event_qualifier_path(id: q.id, event_id: @event.id) %>
               </th>
             <% end %>
           </tr>
@@ -57,6 +57,9 @@
                   <div class="row">
                     <%= link_to truncate(opponent.name, length: 8), edit_match_path(match) %>
                     <%= "(#{match.room&.name})" %>
+                    <span class="badge badge-secondary">
+                      <%= match.result(team) %>
+                    </span>
                   </div>
                 </td>
               <% end %>
