@@ -47,18 +47,21 @@
         <tbody>
           <% @teams.each do |team| %>
             <tr>
-              <td><%= team.name %></td>
+              <td>
+                <span>
+                  <%= link_to team.name, edit_team_path(team) %>
+                </span>
+              </td>
               <% team.matches.each do |match| %>
                 <td>
                   <% opponent = match.team == team ? match.opponent : match.team %>
-                  <div class="row">
-                    <label class="label label-default"><%= match.points(team) %></label>
-                  </div>
-                  <div class="row">
-                    <%= link_to truncate(opponent.name, length: 8), edit_match_path(match) %>
-                    <%= "(#{match.room&.name})" %>
+                  <div class="row <%= 'duplicated' if match.duplicated? %>">
                     <span class="badge badge-secondary">
                       <%= match.result(team) %>
+                    </span>
+                    <span>
+                      <%= link_to truncate(opponent.name, length: 8), edit_match_path(match) %>
+                      <%= "(#{match.room&.name})" %>
                     </span>
                   </div>
                 </td>
