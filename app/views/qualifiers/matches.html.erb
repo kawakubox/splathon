@@ -32,7 +32,7 @@
           <th></th>
         </tr>
         <% @qualifier.matches.each.with_index(1) do |match, i| %>
-          <tr>
+          <tr class="<%= 'duplicated' if match.duplicated? %>">
             <td>
               <%= i %>
             </td>
