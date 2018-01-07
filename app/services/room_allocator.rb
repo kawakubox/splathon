@@ -18,7 +18,8 @@ class RoomAllocator
                         .reverse
 
     # 初戦を除きあとのほうがより強いチームになるので、優先度高い部屋を割り当てるようにする
-    @matches.last.update!(room: room_stocks.shift)
+    # なんか偏る傾向あるので、ここはコメントアウト
+    # @matches.last.update!(room: room_stocks.shift)
 
     # 残りの試合は、優先度高い部屋の利用が少ないチームが割り当てられるようにする
     @matches.where(room: nil).sort { |a, b| a.room_priority <=> b.room_priority }.each do |match|
