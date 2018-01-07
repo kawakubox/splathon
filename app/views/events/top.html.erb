@@ -56,7 +56,7 @@
                 <td>
                   <% opponent = match.team == team ? match.opponent : match.team %>
                   <div class="row <%= 'duplicated' if match.duplicated? %>">
-                    <span class="badge badge-secondary">
+                    <span class="badge badge-secondary <%= 'badge-' + (match.result(team)&.downcase || '') %>">
                       <%= match.result(team) %>
                     </span>
                     <span>
