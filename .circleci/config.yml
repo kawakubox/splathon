@@ -47,6 +47,8 @@ jobs:
           command: |
             bundle exec rake db:create
             bundle exec rake db:schema:load
+          environment:
+            DATABASE_URL: postgres://splathon:@localhost:5432/splathon_test
 
       # run tests!
       - run:
