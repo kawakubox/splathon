@@ -10,13 +10,15 @@ jobs:
       - image: circleci/ruby:2.4.2-node-browsers
         environment:
           RAILS_ENV: test
+          PGHOST: localhost
+          PGUSER: root
 
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
       # documented at https://circleci.com/docs/2.0/circleci-images/
       - image: circleci/postgres:10.3-alpine
         environment:
-          POSTGRES_USER: splathon
+          POSTGRES_USER: root
           POSTGRES_DB: splathon_test
 
     working_directory: ~/repo
@@ -50,8 +52,6 @@ jobs:
           command: |
             bundle exec rake db:create
             bundle exec rake db:schema:load
-          environment:
-            DATABASE_URL: postgres://splathon:@localhost:5432/splathon_test
 
       # run tests!
       - run:
