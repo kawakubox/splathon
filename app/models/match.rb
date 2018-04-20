@@ -27,7 +27,6 @@ class Match < ApplicationRecord
   def duplicated?
     Match.where(team: self.team, opponent: self.opponent)
          .or(Match.where(team: self.opponent, opponent: self.team))
-         .reject { |m| m == self }
          .present?
   end
 end
