@@ -56,9 +56,11 @@
                 <td>
                   <% opponent = match.team == team ? match.opponent : match.team %>
                   <div class="row <%= 'duplicated' if match.duplicated? %>">
-                    <span class="badge badge-secondary <%= 'badge-' + (match.result(team)&.downcase || '') %>">
-                      <%= match.result(team) %>
-                    </span>
+                    <% if match.points(team) %>
+                      <span class="badge badge-secondary <%= 'badge-' + (match.result(team)&.downcase || '') %>">
+                        <%= match.result(team) %>
+                      </span>
+                    <% end %>
                     <span>
                       <%= link_to truncate(opponent.name, length: 8), edit_match_path(match) %>
                       <%= "(#{match.room&.name})" %>
