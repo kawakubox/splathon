@@ -63,7 +63,7 @@
                     <% end %>
                     <span>
                       <%= link_to truncate(opponent.name, length: 8), edit_match_path(match) %>
-                      <%= "(#{match.room&.name})" %>
+                      <%= "(#{match.room&.name})" if match.room %>
                     </span>
                   </div>
                 </td>
