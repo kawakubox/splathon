@@ -36,7 +36,7 @@
         <thead>
           <tr>
             <th>チーム名</th>
-            <% Qualifier.where(event: @event).each do |q| %>
+            <% Qualifier.where(event: @event).order(:round).each do |q| %>
               <th>
                 <%= link_to "#{q.round}回戦", matches_event_qualifier_path(id: q.id, event_id: @event.id) %>
               </th>
