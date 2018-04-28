@@ -23,6 +23,11 @@
     <%= @team.points %>
   </p>
 
+  <p>
+    <strong>ランク:</strong>
+    <%= @team.rank %>
+  </p>
+
   <%= link_to 'Edit', edit_team_path(@team) %> |
   <%= link_to 'Back', teams_path %>
 </section>

@@ -31,6 +31,11 @@
     <%= form.number_field :points, id: :team_points, step: 1 %>
   </div>
 
+  <div class="field">
+    <%= form.label :rank %>
+    <%= form.number_field :rank, id: :team_rank, step: 1 %>
+  </div>
+
   <div class="actions">
     <%= form.submit %>
   </div>
