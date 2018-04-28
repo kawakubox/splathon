@@ -30,7 +30,7 @@ class QualifiersController < ApplicationController
     ActiveRecord::Base.transaction do
       @qualifier = Qualifier.new(event: @event)
       @qualifier.round = Qualifier.next_round(@event.id)
-      Drawer.swiss_draw(@qualifier)
+      Drawer.new(@qualifier).swiss_draw
       @qualifier.save!
     end
     RoomAllocator.new(@qualifier.reload).allocate
@@ -62,7 +62,7 @@ class QualifiersController < ApplicationController
   end
 
   def redraw
-    Drawer.redraw(@qualifier)
+    Drawer.new(@qualifier).redraw
     RoomAllocator.new(@qualifier).allocate
     redirect_back(fallback_location: top_event_path(@qualifier.event))
   end
