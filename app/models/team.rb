@@ -15,7 +15,7 @@ class Team < ApplicationRecord
     Match.where(team: self).where.not(team_points: nil).count + Match.where(opponent: self).where.not(opponent_points: nil).count
   end
 
-  def rank
+  def ranking
     event.teams.where('points > ?', points).count + 1
   end
 
