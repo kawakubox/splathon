@@ -57,8 +57,8 @@
                   <% opponent = match.team == team ? match.opponent : match.team %>
                   <div class="row <%= 'duplicated' if match.duplicated? %>">
                     <% if match.points(team) %>
-                      <span class="badge badge-secondary <%= 'badge-' + (match.result(team)&.downcase || '') %>">
-                        <%= match.result(team) %>
+                      <span class="badge badge-secondary badge-short <%= 'badge-' + (match.result(team)&.downcase || '') %>">
+                        <%= match.result(team).first %>
                       </span>
                     <% end %>
                     <span>
