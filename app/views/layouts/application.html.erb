@@ -5,14 +5,19 @@
     <%= csrf_meta_tags %>
     <%= javascript_pack_tag 'application' %>
     <%= stylesheet_pack_tag 'application' %>
+    <%= favicon_link_tag '/favicon.ico' %>
   </head>
 
   <body class="skin-green">
     <div class="wrapper">
       <header class="main-header">
         <%= link_to events_path, class: "logo" do %>
-          <span class="logo-mini"><b>Splathon</b></span>
-          <span class="logo-lg"><b>Splathon</b></span>
+          <span class="logo-mini">
+            <img src='white_logotype1.svg' />
+          </span>
+          <span class="logo-lg">
+            <img src='white_logotype2.svg' />
+          </span>
         <% end %>
 
         <nav class="navbar navbar-static-top" role="navigation">
