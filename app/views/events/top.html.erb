@@ -11,17 +11,17 @@
   <% end %>
 
   <ul class='nav nav-tabs'>
-    <li class='nav-item active'>
+    <li class='nav-item'>
       <a class='nav-link' data-toggle='tab' href='#ranking-tab'>順位表</a>
     </li>
 
-    <li class='nav-item'>
+    <li class='nav-item active'>
       <a class='nav-link' data-toggle='tab' href='#result-tab'>対戦履歴</a>
     </li>
   </ul>
 
   <div class='tab-content'>
-    <div id='ranking-tab' class='tab-pane active'>
+    <div id='ranking-tab' class='tab-pane'>
       <div class='col-md-6'>
         <%= render partial: 'ranking', locals: { teams: @teams[0...(@teams.size / 2).to_i] } %>
       </div>
@@ -31,7 +31,7 @@
       </div>
     </div>
 
-    <div id='result-tab' class='tab-pane'>
+    <div id='result-tab' class='tab-pane active'>
       <table class="table">
         <thead>
           <tr>
