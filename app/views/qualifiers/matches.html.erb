@@ -31,7 +31,7 @@
           <th style='width: 230px'>AWAY</th>
           <th></th>
         </tr>
-        <% @qualifier.matches.each.with_index(1) do |match, i| %>
+        <% @qualifier.matches.order(room_id: :asc, id: :desc).each.with_index(1) do |match, i| %>
           <tr class="<%= 'duplicated' if match.duplicated? %>">
             <td>
               <%= i %>
