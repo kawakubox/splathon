@@ -1,5 +1,6 @@
 import 'jquery'
 import 'bootstrap'
+import './reload.js'
 
 import 'bootstrap/dist/css/bootstrap'
 import 'font-awesome/css/font-awesome'
