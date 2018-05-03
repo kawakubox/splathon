@@ -22,11 +22,14 @@
 
   <div class='tab-content'>
     <div id='ranking-tab' class='tab-pane'>
-      <div class='col-md-6'>
+      <div class='col-md-5'>
         <%= render partial: 'ranking', locals: { teams: @teams[0...(@teams.size / 2).to_i] } %>
       </div>
 
-      <div class='col-md-6'>
+      <div class='col-md-1'>
+      </div>
+
+      <div class='col-md-5'>
         <%= render partial: 'ranking', locals: { teams: @teams[(@teams.size / 2).to_i..@teams.size] } %>
       </div>
     </div>
