@@ -2,9 +2,9 @@
 
 class RoomAllocator
   def initialize(qualifier)
-    qualifier.reload
-    @matches = qualifier.matches
-    @rooms = qualifier.event.rooms
+    @qualifier = qualifier.reload
+    @matches = @qualifier.matches
+    @rooms = @qualifier.event.rooms
   end
 
   def allocate
@@ -23,6 +23,13 @@ class RoomAllocator
     # 残りの試合は、優先度高い部屋の利用が少ないチームが割り当てられるようにする
     @matches.where(room: nil).sort { |a, b| a.room_priority <=> b.room_priority }.each do |match|
       match.update!(room: room_stocks.shift)
+    end
+
+    # 部屋ごとの試合順(matches.order)を設定する
+    @qualifier.matches.order(room_id: :asc, id: :desc).group_by(&:room_id).each do |room_id, room_matches|
+      room_matches.each.with_index(1) do |match, i|
+        match.update!(order: i)
+      end
     end
   end
 end
