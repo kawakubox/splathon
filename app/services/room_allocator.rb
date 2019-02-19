@@ -21,7 +21,7 @@ class RoomAllocator
     @matches.first.update!(room: room_stocks.shift)
 
     # 残りの試合は、優先度高い部屋の利用が少ないチームが割り当てられるようにする
-    @matches.where(room: nil).sort { |a, b| a.room_priority <=> b.room_priority }.each do |match|
+    @matches.where(room: nil).shuffle.sort { |a, b| a.room_priority <=> b.room_priority }.each do |match|
       match.update!(room: room_stocks.shift)
     end
 
