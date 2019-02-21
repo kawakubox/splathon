@@ -37,4 +37,9 @@ class Team < ApplicationRecord
   def room_priority
     self.matches.sum { |m| m.room&.priority.to_i }
   end
+
+  def omwp
+    teams = home_games.map(&:opponent) + away_games.map(&:team)
+    (teams.sum(&:points).to_d / (3 * teams.size * teams.size)).round(4)
+  end
 end
