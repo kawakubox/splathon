@@ -64,7 +64,11 @@ class EventsController < ApplicationController
   end
 
   def top
-    @teams = Team.where(event: @event).order(points: :desc)
+    teams = Team.where(event: @event).order(points: :desc)
+    @teams = teams.to_a.sort do |t1, t2|
+      diff = t2.points - t1.points
+      diff == 0 ? t2.omwp <=> t1.omwp : diff
+    end
   end
 
   private
