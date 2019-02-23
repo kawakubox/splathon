@@ -7,7 +7,7 @@ class Drawer
   end
 
   def swiss_draw
-    teams = if @qualifier.round <= 2
+    teams = if @qualifier.round == 1
               @qualifier.event.teams.to_a.shuffle.sort do |t1, t2|
                 (t2.rank <=> t1.rank).nonzero? || (t2.points <=> t1.points)
               end
