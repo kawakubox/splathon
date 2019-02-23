@@ -40,6 +40,7 @@ class Team < ApplicationRecord
 
   def omwp
     teams = home_games.map(&:opponent) + away_games.map(&:team)
+    return 0.0 if teams.blank?
     (teams.sum(&:points).to_d / (3 * teams.size * teams.size)).round(4)
   end
 end
