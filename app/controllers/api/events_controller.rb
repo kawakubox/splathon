@@ -5,6 +5,7 @@ class Api::EventsController < ActionController::API
 
   def latest_matches
     @team = @event.teams.find_by(name: params[:team_name])
+    return [] if @event.qualifiers.blank?
     @matches = @event.qualifiers.last.matches.order('room_id' => :asc, 'order' => :asc)
     @matches = @matches.select { |m| m.team == @team || m.opponent == @team  } if @team
   end
