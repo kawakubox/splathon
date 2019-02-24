@@ -31,7 +31,7 @@
           <th style='width: 300px'>ブラボー</th>
           <th></th>
         </tr>
-        <% @qualifier.matches.order(room_id: :asc, id: :desc).each.with_index(1) do |match, i| %>
+        <% @qualifier.matches.order(room_id: :asc, order: :asc).each.with_index(1) do |match, i| %>
           <tr class="<%= 'duplicated' if match.duplicated? %>">
             <td>
               <%= i %>
