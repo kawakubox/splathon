@@ -38,3 +38,17 @@ stages.each do |stage|
   record.name = stage[:name]
   record.save!
 end
+
+rules = [
+  { id: 0, name: "ナワバリバトル", key: "turf_war" },
+  { id: 1, name: "ガチエリア", key: "splat_zones" },
+  { id: 2, name: "ガチヤグラ", key: "tower_control" },
+  { id: 3, name: "ガチホコバトル", key: "rainmaker" },
+  { id: 4, name: "ガチアサリ", key: "clam_blitz" },
+]
+
+rules.each do |rule|
+  record = Rule.find_or_initialize_by(id: rule[:id])
+  record.attributes = rule.slice(:name, :key)
+  record.save!
+end

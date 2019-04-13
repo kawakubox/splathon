@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190413103244) do
+ActiveRecord::Schema.define(version: 20190413123632) do
 
   create_table "events", force: :cascade do |t|
     t.date "held_on"
@@ -50,6 +50,15 @@ ActiveRecord::Schema.define(version: 20190413103244) do
     t.datetime "updated_at", null: false
     t.integer "priority", default: 0, null: false
     t.index ["event_id"], name: "index_rooms_on_event_id"
+  end
+
+  create_table "rules", force: :cascade do |t|
+    t.string "key", null: false
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["key"], name: "index_rules_on_key", unique: true
+    t.index ["name"], name: "index_rules_on_name", unique: true
   end
 
   create_table "stages", force: :cascade do |t|
