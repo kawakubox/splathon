@@ -5,4 +5,5 @@ class Tournament < ApplicationRecord
 
   validates :event, presence: true
   validates :round, presence: true
+  validates :name, presence: true
 end

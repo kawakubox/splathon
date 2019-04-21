@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190420060306) do
+ActiveRecord::Schema.define(version: 20190421114835) do
 
   create_table "battles", force: :cascade do |t|
     t.bigint "match_id", null: false
@@ -98,6 +98,7 @@ ActiveRecord::Schema.define(version: 20190420060306) do
     t.integer "round", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "name", default: "XX回戦", null: false
     t.index ["event_id"], name: "index_tournaments_on_event_id"
   end
 
