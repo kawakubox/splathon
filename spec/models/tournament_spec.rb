@@ -9,5 +9,6 @@ RSpec.describe Tournament, type: :model do
     it { is_expected.to be_valid }
     it { is_expected.to be_invalid_on(:event).with(nil) }
     it { is_expected.to be_invalid_on(:round).with(nil) }
+    it { is_expected.to be_invalid_on(:name).with(nil) }
   end
 end
