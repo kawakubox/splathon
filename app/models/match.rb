@@ -3,8 +3,9 @@
 class Match < ApplicationRecord
   belongs_to :team
   belongs_to :opponent, class_name: 'Team'
-  belongs_to :qualifier
+  belongs_to :qualifier, optional: true
   belongs_to :room, optional: true
+  belongs_to :tournament, optional: true
 
   after_commit { team.aggregate_points; opponent.aggregate_points }
 
