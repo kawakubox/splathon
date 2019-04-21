@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190421153429) do
+ActiveRecord::Schema.define(version: 20190421160654) do
 
   create_table "battles", force: :cascade do |t|
     t.bigint "match_id", null: false
@@ -31,7 +31,10 @@ ActiveRecord::Schema.define(version: 20190421153429) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "series_name", default: "splathon", null: false
+    t.integer "numbering", default: 0, null: false
     t.index ["held_on"], name: "index_events_on_held_on"
+    t.index ["series_name", "numbering"], name: "index_events_on_series_name_and_numbering", unique: true
   end
 
   create_table "matches", force: :cascade do |t|
