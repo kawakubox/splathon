@@ -6,6 +6,7 @@ RSpec.describe Team, type: :model do
   subject { FactoryBot.build(:team) }
   it { is_expected.to respond_to(:name) }
   it { is_expected.to respond_to(:company_name) }
+  it { is_expected.to respond_to(:short_comment) }
 
   describe 'validation' do
     context 'when name is blank' do
