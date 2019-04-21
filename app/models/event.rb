@@ -6,4 +6,5 @@ class Event < ApplicationRecord
   has_many :rooms, dependent: :destroy
 
   validates :name, presence: true
+  validates :numbering, numericality: true, uniqueness: { scope: :series_name }
 end
