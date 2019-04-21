@@ -8,5 +8,9 @@ FactoryBot.define do
     team_points { [0, 1, 3].sample }
     opponent_points { [0, 1, 3].sample }
     room
+
+    trait :with_tournament do
+      tournament
+    end
   end
 end
