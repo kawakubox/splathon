@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190413133538) do
+ActiveRecord::Schema.define(version: 20190420060306) do
 
   create_table "battles", force: :cascade do |t|
     t.bigint "match_id", null: false
@@ -93,7 +93,16 @@ ActiveRecord::Schema.define(version: 20190413133538) do
     t.index ["event_id"], name: "index_teams_on_event_id"
   end
 
+  create_table "tournaments", force: :cascade do |t|
+    t.bigint "event_id"
+    t.integer "round", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["event_id"], name: "index_tournaments_on_event_id"
+  end
+
   add_foreign_key "battles", "matches"
   add_foreign_key "battles", "rules"
   add_foreign_key "battles", "stages"
+  add_foreign_key "tournaments", "events"
 end
