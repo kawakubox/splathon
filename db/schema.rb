@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190421160654) do
+ActiveRecord::Schema.define(version: 20190422144405) do
 
   create_table "battles", force: :cascade do |t|
     t.bigint "match_id", null: false
@@ -53,6 +53,34 @@ ActiveRecord::Schema.define(version: 20190421160654) do
     t.index ["tournament_id"], name: "index_matches_on_tournament_id"
   end
 
+  create_table "participants", force: :cascade do |t|
+    t.bigint "event_id"
+    t.string "slack_username", comment: "kawakubox 変わる可能性があるが参加登録時のもの"
+    t.string "slack_user_id", comment: "U0XXXXXXX"
+    t.string "nickname", comment: "かわくぼっくす"
+    t.string "fullname_kana", comment: "ヤマダハナコ"
+    t.string "company_name"
+    t.string "raw_password"
+    t.string "icon_url", comment: "slack icon image URL"
+    t.boolean "is_staff", comment: "0: スタッフでない, 1: スタッフ"
+    t.boolean "join_party", comment: "0: 懇親会不参加, 1: 懇親会参加"
+    t.boolean "has_companion", comment: "0: 同伴者なし, 1: 同伴者あり"
+    t.integer "fee", comment: "合計参加費"
+    t.bigint "team_id"
+    t.string "rank_splat_zones", comment: "A+, X (2401~2500)"
+    t.string "rank_tower_control", comment: "A+, X (2401~2500)"
+    t.string "rank_rainmaker", comment: "A+, X (2401~2500)"
+    t.string "rank_clam_blitz", comment: "A+, X (2401~2500)"
+    t.string "main_weapon", comment: "スプラシューター"
+    t.string "short_comment", comment: "一言コメント e.g. 今日も一日頑張るぞい!"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["event_id", "slack_user_id"], name: "idx_participants_1"
+    t.index ["event_id", "slack_username"], name: "idx_participants_2"
+    t.index ["event_id"], name: "index_participants_on_event_id"
+    t.index ["team_id"], name: "index_participants_on_team_id"
+  end
+
   create_table "qualifiers", force: :cascade do |t|
     t.integer "event_id", null: false
     t.integer "round"
@@ -60,6 +88,13 @@ ActiveRecord::Schema.define(version: 20190421160654) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["event_id"], name: "index_qualifiers_on_event_id"
+  end
+
+  create_table "receptions", force: :cascade do |t|
+    t.bigint "participant_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["participant_id"], name: "index_receptions_on_participant_id"
   end
 
   create_table "rooms", force: :cascade do |t|
@@ -112,5 +147,8 @@ ActiveRecord::Schema.define(version: 20190421160654) do
   add_foreign_key "battles", "rules"
   add_foreign_key "battles", "stages"
   add_foreign_key "matches", "tournaments"
+  add_foreign_key "participants", "events"
+  add_foreign_key "participants", "teams"
+  add_foreign_key "receptions", "participants"
   add_foreign_key "tournaments", "events"
 end
