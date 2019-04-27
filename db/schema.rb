@@ -75,7 +75,7 @@ ActiveRecord::Schema.define(version: 20190427045306) do
     t.string "short_comment", comment: "一言コメント e.g. 今日も一日頑張るぞい!"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "has_switch_dock"
+    t.boolean "has_switch_dock", null: false, default: false
     t.integer "order_in_team"
     t.index ["event_id", "slack_user_id"], name: "idx_participants_1"
     t.index ["event_id", "slack_username"], name: "idx_participants_2"
