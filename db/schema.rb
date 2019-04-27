@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190422144405) do
+ActiveRecord::Schema.define(version: 20190427051102) do
 
   create_table "battles", force: :cascade do |t|
     t.bigint "match_id", null: false
@@ -94,6 +94,7 @@ ActiveRecord::Schema.define(version: 20190422144405) do
     t.bigint "participant_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "memo"
     t.index ["participant_id"], name: "index_receptions_on_participant_id"
   end
 
