@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190422144405) do
+ActiveRecord::Schema.define(version: 20190427045306) do
 
   create_table "battles", force: :cascade do |t|
     t.bigint "match_id", null: false
@@ -75,6 +75,8 @@ ActiveRecord::Schema.define(version: 20190422144405) do
     t.string "short_comment", comment: "一言コメント e.g. 今日も一日頑張るぞい!"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "has_switch_dock"
+    t.integer "order_in_team"
     t.index ["event_id", "slack_user_id"], name: "idx_participants_1"
     t.index ["event_id", "slack_username"], name: "idx_participants_2"
     t.index ["event_id"], name: "index_participants_on_event_id"
