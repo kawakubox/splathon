@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190428153627) do
+ActiveRecord::Schema.define(version: 20190429161301) do
 
   create_table "battles", force: :cascade do |t|
     t.bigint "match_id", null: false
@@ -142,6 +142,7 @@ ActiveRecord::Schema.define(version: 20190428153627) do
     t.integer "points", default: 0, null: false
     t.integer "rank", default: 0, null: false
     t.string "short_comment"
+    t.string "name_kana"
     t.index ["event_id"], name: "index_teams_on_event_id"
   end
 
