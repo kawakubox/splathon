@@ -2,11 +2,11 @@
   "name": "splathon",
   "private": true,
   "dependencies": {
-    "@rails/webpacker": "3.4",
+    "@rails/webpacker": "~>4.0",
     "admin-lte": "^2.4.2",
     "bootstrap": "^3.3.7"
   },
   "devDependencies": {
-    "webpack-dev-server": "2.11.2"
+    "webpack-dev-server": "~>3.7"
   }
 }
