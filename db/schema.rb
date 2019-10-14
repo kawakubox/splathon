@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190429161301) do
+ActiveRecord::Schema.define(version: 20190518001054) do
 
   create_table "battles", force: :cascade do |t|
     t.bigint "match_id", null: false
@@ -124,6 +124,15 @@ ActiveRecord::Schema.define(version: 20190429161301) do
     t.datetime "updated_at", null: false
     t.index ["key"], name: "index_rules_on_key", unique: true
     t.index ["name"], name: "index_rules_on_name", unique: true
+  end
+
+  create_table "slack_billing_changes", force: :cascade do |t|
+    t.string "detected_on", null: false
+    t.string "member_id", null: false
+    t.string "display_name", null: false
+    t.string "action", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "stages", force: :cascade do |t|
