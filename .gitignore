@@ -27,3 +27,8 @@
 /node_modules
 yarn-debug.log*
 .yarn-integrity
+
+.DS_Store
+
+/export/users/*
+/export/users/images/*
