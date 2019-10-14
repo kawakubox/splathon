@@ -57,6 +57,12 @@ class SlackUserExporter
 
   def guess_extension(contents)
     mime = MimeMagic.by_magic(contents)
-    mime.type.split('/').last
+    ext = mime.type.split('/').last
+    case ext
+    when 'jpeg'
+      'jpg'
+    else
+      ext
+    end
   end
 end
