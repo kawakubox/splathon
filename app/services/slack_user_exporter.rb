@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'csv'
+require 'RMagick'
 
 class SlackUserExporter
   def initialize(user_ids = [])
@@ -50,8 +51,18 @@ class SlackUserExporter
     response = conn.get uri.path, params
     ext = guess_extension(response.body)
 
-    open("./export/users/images/#{id}.#{ext}", 'wb') do |file|
+    file_path = "./export/users/images/#{id}.#{ext}"
+
+    open(file_path, 'wb') do |file|
       file.write(response.body)
+    end
+
+    case ext
+    when 'png' || 'gif'
+      puts "#{ext} → jpg 変換します"
+      img = Magick::Image.read(file_path).first
+      img.format = 'JPEG'
+      img.write("./export/users/images/#{id}.jpg")
     end
   end
 
