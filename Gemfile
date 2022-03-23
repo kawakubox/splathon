@@ -7,7 +7,7 @@ end
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.1'
+gem 'rails', '~> 5.2'
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
 # Use SCSS for stylesheets
@@ -33,7 +33,6 @@ gem 'jbuilder', '~> 2.5'
 
 gem "font-awesome-rails"
 gem 'faraday_middleware'
-gem 'mimemagic'
 gem 'pg'
 gem 'slack-ruby-client'
 gem 'webpacker'
