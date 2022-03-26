@@ -7,22 +7,22 @@ namespace :slack do
   namespace :billing_changes do
     desc 'Crawl billing/changes page'
     task :crawl => :environment do
-      agent = Mechanize.new
-      page = agent.get('https://splathon.slack.com/')
-      page.form.email = ENV['SLACK_LOGIN_EMAIL']
-      page.form.password = ENV['SLACK_LOGIN_PASSWORD']
-      page.form.submit
+      require 'csv'
 
-      scraper = BillingChangeScraper.new(agent)
+      driver = Selenium::WebDriver.for :chrome
+      driver.get 'https://splathon.slack.com/admin'
+      sleep(3)
+      driver.find_element(id: 'email').send_keys(ENV['SLACK_LOGIN_EMAIL'])
+      driver.find_element(id: 'password').send_keys(ENV['SLACK_LOGIN_PASSWORD'])
+      driver.find_element(id: 'signin_btn').click
+
+      scraper = BillingChangeScraper.new(driver)
       user_changes = scraper.scrape
 
-      user_changes.each do |user_change|
-        record = SlackBillingChange.find_or_create_by(user_change.attributes.slice('detected_on', 'member_id', 'action')) do |r|
-          r.display_name = user_change.attributes['display_name']
+      CSV.open("billing_change_#{Time.now.to_i}.csv", "w") do |csv|
+        user_changes.each do |row|
+          csv << row.values_at(:detected_on, :member_id, :display_name, :action)
         end
-
-        record.display_name = user_change.attributes['display_name']
-        record.save! if record.will_save_change_to_display_name?
       end
     end
   end

@@ -34,6 +34,7 @@ gem 'jbuilder', '~> 2.5'
 gem "font-awesome-rails"
 gem 'faraday_middleware'
 gem 'pg'
+gem 'selenium-webdriver'
 gem 'slack-ruby-client'
 gem 'webpacker'
 
@@ -46,7 +47,6 @@ group :development, :test do
   gem 'dry-types'
   gem 'factory_bot_rails'
   gem 'faker', '~> 2.0'
-  gem 'mechanize'
   gem 'pry-rails'
   gem 'rspec-rails'
   gem 'selenium-webdriver'
