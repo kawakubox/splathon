@@ -9,18 +9,30 @@ class SlackUserExporter
   end
 
   def run
-    users = @client.users_list['members'].map do |member|
-      id = member['id']
-      name = member['name']
-      real_name = member['real_name']
-      profile = member['profile']
+    FileUtils.mkdir_p('./export/users/images')
 
-      next unless @user_ids.include?(id)
+    users = @user_ids.map do |id|
+      response = @client.users_info(user: id)
+
+      unless response['ok']
+        puts "Failed fetch user [#{id}]"
+        next
+      end
+
+      id = response.user.id
+      name = response.user.name
+      real_name = response.user.real_name
+      profile = response.user.profile
 
       puts "#{id} #{name} 取得中"
 
       image_path = extract_image_path(profile)
-      download_icon(id, image_path) 
+
+      unless image_path
+        puts "Profile image is not found [#{image_path}]"
+      end
+
+      download_icon(id, image_path)
 
       [id, name, real_name, image_path]
     end.compact
@@ -50,8 +62,13 @@ class SlackUserExporter
     response = conn.get uri.path, params
     ext = guess_extension(response.body)
 
-    open("./export/users/images/#{id}.#{ext}", 'wb') do |file|
+    file_path = "./export/users/images/#{id}.#{ext}"
+    open(file_path, 'wb') do |file|
       file.write(response.body)
+    end
+
+    unless File.exist?(file_path)
+      puts "File is not exist [#{file_path}]"
     end
   end
 

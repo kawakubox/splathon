@@ -164,6 +164,9 @@ GEM
       net-smtp
     marcel (1.0.2)
     method_source (1.0.0)
+    mimemagic (0.4.3)
+      nokogiri (~> 1)
+      rake
     mini_mime (1.1.5)
     mini_portile2 (2.8.5)
     minitest (5.20.0)
@@ -333,6 +336,7 @@ DEPENDENCIES
   jbuilder (~> 2.5)
   listen (>= 3.0.5, < 3.2)
   pg
+  mimemagic
   pry-rails
   puma (~> 4.3)
   rails (~> 6.0)

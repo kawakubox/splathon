@@ -1,7 +1,9 @@
 namespace :slack do
   desc 'Export users info'
-  task :export_users, ['user_ids'] => :environment do |_task, args|
-    SlackUserExporter.new(args.to_a).run
+  task :export_users, ['file'] => :environment do |_task, args|
+    user_ids = File.open(args[:file]).readlines.map(&:strip).uniq
+    puts "#{user_ids.length} 件処理します"
+    SlackUserExporter.new(user_ids).run
   end
 
   namespace :billing_changes do
